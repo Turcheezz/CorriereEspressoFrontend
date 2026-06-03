@@ -1,0 +1,87 @@
+<div class="mb-4">
+  <h4 class="page-title mb-1">Statistiche Consegne</h4>
+  <p class="page-subtitle mb-0">Riepilogo e tempo medio di consegna</p>
+</div>
+
+<div class="card mb-4">
+  <div class="card-body p-3">
+    <div class="row g-2 align-items-end">
+      <div class="col-md-3">
+        <label class="form-label fw-medium small">Dal</label>
+        <input type="date" class="form-control" [(ngModel)]="dal" />
+      </div>
+      <div class="col-md-3">
+        <label class="form-label fw-medium small">Al</label>
+        <input type="date" class="form-control" [(ngModel)]="al" />
+      </div>
+      <div class="col-md-3">
+        <label class="form-label fw-medium small">Stato</label>
+        <select class="form-select" [(ngModel)]="stato">
+          <option value="">Tutti</option>
+          <option *ngFor="let s of stati" [value]="s">{{ s || 'Tutti' }}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-primary w-100" (click)="search()" [disabled]="loading">
+          <i class="bi bi-search me-1"></i>{{ loading ? 'Caricamento...' : 'Cerca' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-danger d-flex align-items-center gap-2 py-2" *ngIf="error">
+  <i class="bi bi-exclamation-triangle"></i>
+  <span>{{ error }}</span>
+</div>
+
+<div class="card" *ngIf="result">
+  <div class="card-body p-4">
+    <h5 class="fw-bold mb-4">Risultati</h5>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card bg-light border-0 rounded-3">
+          <div class="card-body text-center">
+            <div class="text-muted small">Periodo</div>
+            <div class="fw-bold fs-5">{{ result.dal | date:'dd/MM/yyyy' }} - {{ result.al | date:'dd/MM/yyyy' }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-light border-0 rounded-3">
+          <div class="card-body text-center">
+            <div class="text-muted small">Stato</div>
+            <div class="fw-bold fs-5">{{ result.stato || 'Tutti' }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-light border-0 rounded-3">
+          <div class="card-body text-center">
+            <div class="text-muted small">Numero Consegne</div>
+            <div class="fw-bold fs-5">{{ result.numeroConsegne }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-3">
+      <div class="card bg-info bg-opacity-10 border-0 rounded-3">
+        <div class="card-body text-center">
+          <div class="text-muted small">Tempo medio di consegna</div>
+          <div class="fw-bold fs-3 text-info">
+            {{ getTempoMedio(result.tempoMedioConsegnaOre) }}
+          </div>
+          <div class="text-muted small" *ngIf="result.tempoMedioConsegnaOre">
+            {{ result.tempoMedioConsegnaOre }} ore
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="text-center py-5" *ngIf="loading">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Caricamento...</span>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card shadow-sm border-0 rounded-4">
+      <div class="card-body p-4">
+        <div class="d-flex align-items-center gap-2 mb-4">
+          <i class="bi bi-box-seam fs-4 text-primary"></i>
+          <h4 class="fw-bold mb-0">{{ isEdit ? 'Modifica Consegna' : 'Nuova Consegna' }}</h4>
+        </div>
+        <form (ngSubmit)="submit()" #form="ngForm">
+          <div class="mb-3">
+            <label class="form-label fw-medium">Cliente *</label>
+            <select class="form-select" [(ngModel)]="clienteId" name="clienteId" required>
+              <option value="0" disabled>Seleziona un cliente</option>
+              <option *ngFor="let c of clienti" [value]="c.clienteId">{{ c.nominativo }} - {{ c.comune }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-medium">Data Ritiro *</label>
+            <input type="date" class="form-control" [(ngModel)]="dataRitiro" name="dataRitiro" required />
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-medium">Stato</label>
+            <select class="form-select" [(ngModel)]="stato" name="stato">
+              <option *ngFor="let s of stati" [value]="s">{{ s }}</option>
+            </select>
+          </div>
+          <div class="alert alert-danger d-flex align-items-center gap-2 py-2" *ngIf="error">
+            <i class="bi bi-exclamation-triangle"></i>
+            <span>{{ error }}</span>
+          </div>
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+              <i class="bi bi-save me-1"></i>{{ isEdit ? 'Salva Modifiche' : 'Crea Consegna' }}
+            </button>
+            <a routerLink="/consegne" class="btn btn-outline-secondary">Annulla</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

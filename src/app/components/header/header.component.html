@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+      <i class="bi bi-truck fs-4"></i>
+      <span class="fw-bold">Corriere Espresso</span>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse"
+      aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="auth.isAuthenticated()">
+          <a class="nav-link d-flex align-items-center gap-2" routerLink="/dashboard" routerLinkActive="active">
+            <i class="bi bi-speedometer2"></i>Dashboard
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="auth.isAuthenticated()">
+          <a class="nav-link d-flex align-items-center gap-2" routerLink="/clienti" routerLinkActive="active">
+            <i class="bi bi-people"></i>Clienti
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="auth.isAuthenticated()">
+          <a class="nav-link d-flex align-items-center gap-2" routerLink="/consegne" routerLinkActive="active">
+            <i class="bi bi-box-seam"></i>Consegne
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="auth.isAuthenticated()">
+          <a class="nav-link d-flex align-items-center gap-2" routerLink="/statistiche" routerLinkActive="active">
+            <i class="bi bi-bar-chart"></i>Statistiche
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav align-items-lg-center gap-2">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" routerLink="/tracking" routerLinkActive="active">
+            <i class="bi bi-search"></i>Tracciamento
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!auth.isAuthenticated()">
+          <a class="nav-link d-flex align-items-center gap-2" routerLink="/login">
+            <i class="bi bi-box-arrow-in-right"></i>Accedi
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!auth.isAuthenticated()">
+          <a class="nav-link d-flex align-items-center gap-2" routerLink="/register">
+            <i class="bi bi-person-plus"></i>Registrati
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="auth.isAuthenticated()">
+          <span class="nav-link text-light opacity-75 small d-flex align-items-center gap-1">
+            <i class="bi bi-person-circle"></i>
+            <span>{{ auth.getUserName() }}</span>
+          </span>
+        </li>
+        <li class="nav-item" *ngIf="auth.isAuthenticated()">
+          <a class="nav-link d-flex align-items-center gap-2 text-danger" (click)="auth.logout()" style="cursor:pointer">
+            <i class="bi bi-box-arrow-right"></i>Esci
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

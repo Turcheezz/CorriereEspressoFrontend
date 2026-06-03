@@ -1,0 +1,121 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.min.css';
+
+:root {
+  --primary-gradient: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+  --success-gradient: linear-gradient(135deg, #198754 0%, #157347 100%);
+  --warning-gradient: linear-gradient(135deg, #ffc107 0%, #d39e00 100%);
+  --danger-gradient: linear-gradient(135deg, #dc3545 0%, #bb2d3b 100%);
+  --info-gradient: linear-gradient(135deg, #0dcaf0 0%, #0aa2c0 100%);
+  --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --card-hover-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+body {
+  background-color: #f0f2f5;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--card-hover-shadow);
+}
+
+.stat-card {
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.stat-card .stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.stat-card .stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-card .stat-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-sm {
+  padding: 0.35rem 0.85rem;
+}
+
+.badge-status {
+  padding: 0.4em 0.75em;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 20px;
+}
+
+.alert {
+  border: none;
+  border-radius: 10px;
+}
+
+.table > :not(caption) > * > * {
+  vertical-align: middle;
+}
+
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  padding: 0.6rem 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.form-control-lg {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+.page-title {
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.page-subtitle {
+  color: #64748b;
+  font-size: 0.9rem;
+}

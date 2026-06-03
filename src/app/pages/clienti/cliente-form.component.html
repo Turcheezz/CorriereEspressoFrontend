@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card shadow-sm border-0 rounded-4">
+      <div class="card-body p-4">
+        <div class="d-flex align-items-center gap-2 mb-4">
+          <i class="bi bi-person fs-4 text-primary"></i>
+          <h4 class="fw-bold mb-0">{{ isEdit ? 'Modifica Cliente' : 'Nuovo Cliente' }}</h4>
+        </div>
+        <form (ngSubmit)="submit()" #form="ngForm">
+          <div class="mb-3">
+            <label class="form-label fw-medium">Nominativo *</label>
+            <input class="form-control" [(ngModel)]="nominativo" name="nominativo" placeholder="Ragione sociale o nome" required />
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label fw-medium">Via *</label>
+              <input class="form-control" [(ngModel)]="via" name="via" placeholder="Via, numero civico" required />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label fw-medium">Comune *</label>
+              <input class="form-control" [(ngModel)]="comune" name="comune" placeholder="Comune" required />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label fw-medium">Provincia</label>
+              <input class="form-control" [(ngModel)]="provincia" name="provincia" placeholder="Sigla" maxlength="2" />
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label fw-medium">Telefono</label>
+              <input class="form-control" [(ngModel)]="telefono" name="telefono" placeholder="Numero telefono" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-medium">Email</label>
+              <input class="form-control" [(ngModel)]="email" name="email" type="email" placeholder="email@esempio.com" />
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-medium">Note</label>
+            <textarea class="form-control" [(ngModel)]="note" name="note" rows="2" placeholder="Note opzionali"></textarea>
+          </div>
+          <div class="alert alert-danger d-flex align-items-center gap-2 py-2" *ngIf="error">
+            <i class="bi bi-exclamation-triangle"></i>
+            <span>{{ error }}</span>
+          </div>
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+              <i class="bi bi-save me-1"></i>{{ isEdit ? 'Salva Modifiche' : 'Crea Cliente' }}
+            </button>
+            <a routerLink="/clienti" class="btn btn-outline-secondary">Annulla</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

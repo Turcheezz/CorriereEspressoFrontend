@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h4 class="page-title mb-1">Clienti</h4>
+    <p class="page-subtitle mb-0">Gestione anagrafica clienti</p>
+  </div>
+  <a routerLink="/clienti/nuovo" class="btn btn-primary">
+    <i class="bi bi-plus-circle me-1"></i>Nuovo Cliente
+  </a>
+</div>
+
+<div class="alert alert-success d-flex align-items-center gap-2 py-2" *ngIf="success">
+  <i class="bi bi-check-circle"></i>
+  <span>{{ success }}</span>
+</div>
+<div class="alert alert-danger d-flex align-items-center gap-2 py-2" *ngIf="error">
+  <i class="bi bi-exclamation-triangle"></i>
+  <span>{{ error }}</span>
+</div>
+
+<div class="card" *ngIf="!loading">
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead class="table-light">
+          <tr>
+            <th class="ps-4">Nominativo</th>
+            <th>Indirizzo</th>
+            <th>Comune</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th class="text-end pe-4">Azioni</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of clienti">
+            <td class="ps-4 fw-medium">{{ c.nominativo }}</td>
+            <td>{{ c.via }}</td>
+            <td>{{ c.comune }} <span *ngIf="c.provincia">({{ c.provincia }})</span></td>
+            <td>{{ c.telefono || '--' }}</td>
+            <td>{{ c.email || '--' }}</td>
+            <td class="text-end pe-4">
+              <button class="btn btn-sm btn-outline-primary me-1" (click)="modifica(c.clienteId)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-danger" (click)="elimina(c.clienteId)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="clienti.length === 0">
+            <td colspan="6" class="text-center py-4 text-muted">
+              Nessun cliente registrato.
+              <a routerLink="/clienti/nuovo" class="text-decoration-none">Crea il primo cliente</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="text-center py-5" *ngIf="loading">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Caricamento...</span>
+  </div>
+</div>
